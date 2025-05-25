@@ -12,4 +12,7 @@ import lombok.NoArgsConstructor;
 public class CargoDto {
     private Long id;
     private String nombre;
+
+    public CargoDto(String administrador) {
+    }
 }
