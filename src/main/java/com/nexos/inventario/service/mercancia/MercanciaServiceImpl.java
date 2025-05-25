@@ -1,6 +1,7 @@
 package com.nexos.inventario.service.mercancia;
 
 import com.nexos.inventario.dto.MercanciaDto;
+import com.nexos.inventario.dto.MercanciaResponseDto;
 import com.nexos.inventario.entity.Mercancia;
 import com.nexos.inventario.entity.Usuario;
 import com.nexos.inventario.exception.InventarioException;
@@ -90,7 +91,7 @@ public class MercanciaServiceImpl implements MercanciaService {
     }
 
     @Override
-    public List<MercanciaDto> buscarMercancias(Optional<String> nombre, Optional<Long> usuarioId, Optional<LocalDate> fecha, Optional<Long> mercanciaId) {
+    public List<MercanciaResponseDto> buscarMercancias(Optional<String> nombre, Optional<Long> usuarioId, Optional<LocalDate> fecha, Optional<Long> mercanciaId) {
 //        if (nombre.isEmpty() && usuarioId.isEmpty() && fecha.isEmpty()) {
 //            throw new InventarioException("Debe buscar al menos por un filtro");
 //        }
@@ -112,6 +113,6 @@ public class MercanciaServiceImpl implements MercanciaService {
         }
         List<Mercancia> resultados = mercanciaRepository.findAll(spec);
 
-        return resultados.stream().map(MercanciaMapper::toDTO).collect(Collectors.toList());
+        return resultados.stream().map(MercanciaMapper::toDTOS).collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.nexos.inventario.controller;
 
 import com.nexos.inventario.dto.MercanciaDto;
+import com.nexos.inventario.dto.MercanciaResponseDto;
 import com.nexos.inventario.service.mercancia.MercanciaService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -47,14 +48,14 @@ public class MercanciaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MercanciaDto>> buscar(
+    public ResponseEntity<List<MercanciaResponseDto>> buscar(
             @RequestParam Optional<String> nombre,
             @RequestParam Optional<Long> usuarioId,
             @RequestParam Optional<String> fecha,
             @RequestParam Optional<Long> mercanciaId
     ) {
         Optional<LocalDate> fechaOpt = fecha.map(LocalDate::parse);
-        List<MercanciaDto> resultados = mercanciaService.buscarMercancias(nombre, usuarioId, fechaOpt, mercanciaId);
+        List<MercanciaResponseDto> resultados = mercanciaService.buscarMercancias(nombre, usuarioId, fechaOpt, mercanciaId);
         return ResponseEntity.ok(resultados);
     }
 }
