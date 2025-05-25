@@ -16,6 +16,7 @@ public class MercanciaMapper {
 
     public static MercanciaDto toDTO(Mercancia m) {
         MercanciaDto dto = new MercanciaDto();
+        dto.setId(m.getId());
         dto.setNombre(m.getNombre());
         dto.setCantidad(m.getCantidad());
         dto.setFechaIngreso(m.getFechaIngreso());

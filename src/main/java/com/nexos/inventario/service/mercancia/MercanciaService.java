@@ -14,5 +14,5 @@ public interface MercanciaService {
 
     void eliminarMercancia(Long id, Long usuarioId);
 
-    List<MercanciaDto> buscarMercancias(Optional<String> nombre, Optional<Long> usuarioId, Optional<LocalDate> fecha);
+    List<MercanciaDto> buscarMercancias(Optional<String> nombre, Optional<Long> usuarioId, Optional<LocalDate> fecha, Optional<Long> mercanciaId);
 }

@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/mercancias")
+@CrossOrigin
 public class MercanciaController {
 
     private final MercanciaService mercanciaService;
@@ -49,10 +50,11 @@ public class MercanciaController {
     public ResponseEntity<List<MercanciaDto>> buscar(
             @RequestParam Optional<String> nombre,
             @RequestParam Optional<Long> usuarioId,
-            @RequestParam Optional<String> fecha
+            @RequestParam Optional<String> fecha,
+            @RequestParam Optional<Long> mercanciaId
     ) {
         Optional<LocalDate> fechaOpt = fecha.map(LocalDate::parse);
-        List<MercanciaDto> resultados = mercanciaService.buscarMercancias(nombre, usuarioId, fechaOpt);
+        List<MercanciaDto> resultados = mercanciaService.buscarMercancias(nombre, usuarioId, fechaOpt, mercanciaId);
         return ResponseEntity.ok(resultados);
     }
 }

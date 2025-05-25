@@ -1,4 +1,4 @@
-package com.nexos.inventario.exeption;
+package com.nexos.inventario.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

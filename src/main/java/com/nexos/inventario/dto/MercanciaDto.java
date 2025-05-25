@@ -16,6 +16,8 @@ import java.time.LocalDate;
 @Builder
 public class MercanciaDto {
 
+    private Long id;
+
     @NotBlank(message = "Nombre no puede estar vacío")
     private String nombre;
 

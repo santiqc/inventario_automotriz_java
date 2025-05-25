@@ -3,6 +3,7 @@ package com.nexos.inventario.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "usuario", schema = "public")
 public class Usuario {
 
@@ -26,6 +28,7 @@ public class Usuario {
     @Column(name = "fecha_ingreso")
     private LocalDate fechaIngreso;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cargo_id", nullable = false)
     private Cargo cargo;
 }

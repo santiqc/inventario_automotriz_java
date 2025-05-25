@@ -1,7 +1,9 @@
 package com.nexos.inventario.dto;
 
-
-
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,17 +15,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UsuarioDto {
-
-    private Long id;
-
+public class UsuarioRequest {
+    @NotBlank
     private String nombre;
 
+    @Min(18)
     private Integer edad;
 
-    private String cargo;
-
+    @NotNull
     private Long cargoId;
 
+    @PastOrPresent
     private LocalDate fechaIngreso;
 }

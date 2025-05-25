@@ -18,4 +18,8 @@ public class MercanciaSpecification {
     public static Specification<Mercancia> fechaIngresoEs(LocalDate fecha) {
         return (root, query, cb) -> cb.equal(root.get("fechaIngreso"), fecha);
     }
+
+    public static Specification<Mercancia> mercanciaId(Long id) {
+        return (root, query, cb) -> cb.equal(root.get("id"), id);
+    }
 }

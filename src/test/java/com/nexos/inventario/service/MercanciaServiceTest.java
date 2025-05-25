@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import com.nexos.inventario.dto.MercanciaDto;
 import com.nexos.inventario.entity.Mercancia;
 import com.nexos.inventario.entity.Usuario;
-import com.nexos.inventario.exeption.InventarioException;
+import com.nexos.inventario.exception.InventarioException;
 import com.nexos.inventario.repository.MercanciaRepository;
 import com.nexos.inventario.repository.UsuarioRepository;
 
