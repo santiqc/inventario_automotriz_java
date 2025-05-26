@@ -8,6 +8,7 @@ import com.nexos.inventario.entity.Usuario;
 import com.nexos.inventario.repository.CargoRepository;
 import com.nexos.inventario.repository.UsuarioRepository;
 import com.nexos.inventario.service.cargo.CargoMapper;
+import com.nexos.inventario.service.cargo.CargoMapperImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final CargoRepository cargoRepository;
+    private final CargoMapperImpl cargoMapperImpl;
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, CargoRepository cargoRepository) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, CargoRepository cargoRepository, CargoMapperImpl cargoMapperImpl) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
         this.cargoRepository = cargoRepository;
+        this.cargoMapperImpl = cargoMapperImpl;
     }
 
     @Override
@@ -84,5 +87,21 @@ public class UsuarioServiceImpl implements UsuarioService {
         return cargoRepository.findAll().stream()
                 .map(CargoMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public CargoDto crearCargo(CargoDto request) {
+        if (cargoRepository.existsByNombreIgnoreCase(request.getNombre())) {
+            throw new IllegalArgumentException("Ya existe un cargo con ese nombre.");
+        }
+        Cargo cargo = cargoMapperImpl.toEntity(request);
+        return CargoMapper.toDto(cargoRepository.save(cargo));
+    }
+
+
+    public void eliminarCargo(Long id) {
+        if (!cargoRepository.existsById(id)) {
+            throw new RuntimeException("Cargo no encontrado.");
+        }
+        cargoRepository.deleteById(id);
     }
 }

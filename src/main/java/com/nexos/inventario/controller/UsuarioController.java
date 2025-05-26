@@ -50,4 +50,15 @@ public class UsuarioController {
     public ResponseEntity<List<CargoDto>> obtenerCargos() {
         return ResponseEntity.ok(usuarioService.obtenerCargos());
     }
+
+    @PostMapping("/cargos/crear")
+    public ResponseEntity<CargoDto> crearCargo(@RequestBody CargoDto request) {
+        return new ResponseEntity<>(usuarioService.crearCargo(request), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/cargos/{id}")
+    public ResponseEntity<Void> eliminarCargo(@PathVariable Long id) {
+        usuarioService.eliminarCargo(id);
+        return ResponseEntity.noContent().build();
+    }
 }

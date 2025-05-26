@@ -19,4 +19,8 @@ public interface UsuarioService {
     void eliminarUsuario(Long id);
 
     List<CargoDto> obtenerCargos();
+
+    CargoDto crearCargo(CargoDto request);
+
+    void eliminarCargo(Long id);
 }
